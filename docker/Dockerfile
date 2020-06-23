@@ -15,16 +15,16 @@ RUN yum install -y git iproute which centos-release-scl \
     && yum update -y && yum clean all
 
 # Install required Python modules
-COPY docker/requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 COPY docker/create_python_venv.sh create_python_venv.sh
-RUN bash create_python_env.sh
+RUN scl enable rh-python36 ${PWD}/create_python_venv.sh
 
 # Bring in the entrypoint script
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Copy Django security key
 COPY docker/init_django.py init_django.py
-RUN ./init_django.py
+RUN source venv/bin/activate && python3 init_django.py
 
 # Copy the latest httpd.conf file
 COPY docker/clus20_django.conf /opt/rh/httpd24/root/etc/httpd/conf.d/
