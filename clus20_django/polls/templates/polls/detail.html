@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Poll Question Detail</title>
+    </head>
+    <body>
+        <h1>Details of Poll Questions: {{ question.question_text }}</h1>
+        <ul>
+            <li> ID: {{ question.id }} </li>
+            <li> Text: {{ question.question_text }} </li>
+            <li> Choices:
+                    {% if question.choice_set.all %}
+                    <ul>
+                    {% for choice in question.choice_set.all %}
+                        <li>
+                            Option {{ choice.id }}: {{ choice.choice_text }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                        <p>No choices are available.</p>
+                    {% endif %}                    
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>
