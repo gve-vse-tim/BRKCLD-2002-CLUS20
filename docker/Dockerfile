@@ -1,12 +1,13 @@
-FROM  centos:8
+FROM  ubuntu:18.04
 LABEL maintainer "Tim Miller <timmil@cisco.com>"
 
 WORKDIR /var/www
 
 # Install packages
-RUN yum install -y git iproute which python3-pip python3-virtualenv \
-    && yum install -y python3-mod_wsgi python3-psycopg2 \
-    && yum update -y && yum clean all
+RUN apt-get update -y \
+    && apt-get install -y git iproute2 python3-pip virtualenv \
+    && apt-get install -y apache2 libapache2-mod-wsgi-py3 python3-psycopg2 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install required Python modules
 COPY requirements.txt requirements.txt
@@ -15,10 +16,11 @@ RUN bash ${PWD}/scripts/create_python_venv.sh
 
 # Create Django security key
 COPY docker/init_django.py scripts/
-RUN source venv/bin/activate && python3 scripts/init_django.py
+RUN /var/www/venv/bin/python3 scripts/init_django.py
 
 # Copy the latest httpd.conf file
-COPY docker/clus20_django.conf /etc/httpd/conf.d/
+COPY docker/clus20_django.conf /etc/apache2/sites-available/100-clus20_django.conf
+RUN a2ensite 100-clus20_django && a2dissite 000-default
 
 # Copy the initialization script
 COPY docker/init_database.py scripts/
@@ -29,4 +31,4 @@ COPY clus20_django/ clus20_django/
 EXPOSE 80
 USER root
 
-CMD [ "/usr/sbin/httpd", "-DFOREGROUND" ]
+CMD [ "/usr/sbin/apache2ctl", "-DFOREGROUND" ]
