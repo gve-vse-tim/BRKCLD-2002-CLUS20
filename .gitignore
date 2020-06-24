@@ -1,5 +1,6 @@
 # Local Exceptions
 .vscode/
+pgsql/
 
 secret_key.txt
 secrets/

@@ -1,6 +1,15 @@
 #!/var/www/venv/bin/python3
 
+# Initialize Python environment to leverage Django content
+import sys
+sys.path.append('/var/www/clus20_django')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clus20_django.settings')
 
+# Initialize Django
+import django
+django.setup()
+
+# Import Django models
 from django.core import management
 from django.contrib.auth import get_user_model
 from polls.models import Choice, Question
@@ -19,9 +28,8 @@ if __name__ == '__main__':
     # Populate example poll questions
     # https://docs.djangoproject.com/en/3.0/intro/tutorial02/
     q = Question(question_text="What's new?", pub_date=timezone.now())
-    q.save
+    q.save()
 
     q.choice_set.create(choice_text='Not much', votes=0)
     q.choice_set.create(choice_text='The sky', votes=0)
     q.choice_set.create(choice_text='Just hacking again', votes=0)
-

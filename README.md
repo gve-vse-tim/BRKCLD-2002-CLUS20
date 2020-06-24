@@ -14,6 +14,8 @@ deployed by CloudCenter
   application.
 - init_database.py: Python based script to force database schema initialization
   and synchronization with the PgSQL server
+- init_django.py: Create a random secret_key.txt file automatically so that it
+  won't be stored in the code repository.
 
 See the [README.md](docker/README.md) for instructions on building and running
 the application on your local laptop's Docker installation.
@@ -25,8 +27,9 @@ Sample application based on a shortened implementation of Django Project's
 
 ### Requirements
 
-With a CentOS based image, the mod_wsgi and psycopg2 python modules are
-provided by the operating systems, via the software collections (SCL).
+With a CentOS 8 based image, the mod_wsgi and psycopg2 python modules are
+provided by the operating system package manager and including in the virtual
+environment via **--system-site-packages** option to **virtualenv**
 
 - Python >= 3.6
 - Psycopg2 >= 2.7
@@ -37,7 +40,8 @@ provided by the operating systems, via the software collections (SCL).
 ### Application initialization
 
 A secret_key.txt must be provided to the application and store in the location
-**/var/www/secret_key.txt**
+**/var/www/secret_key.txt**.  Currently, we create this file automatically via the
+**init_django.py** script.
 
 - django-admin startproject clus20_django
 - python manage.py startapp polls
