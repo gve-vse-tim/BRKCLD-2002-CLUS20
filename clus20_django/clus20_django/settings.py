@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 with open('/var/www/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
+
+# Dynamically specify the database from an external configuration file
+with open('/var/www/connection.json') as f:
+    DATABASES = json.load(f)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -75,19 +80,19 @@ WSGI_APPLICATION = 'clus20_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'clus20_database',
-        'HOST': 'clus20_pgsql',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-    }
-}
+# DATABASES = {
+# #    'default': {
+# #        'ENGINE': 'django.db.backends.sqlite3',
+# #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+# #    }
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'clus20_database',
+#         'HOST': 'clus20_pgsql',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#     }
+# }
 
 
 # Password validation

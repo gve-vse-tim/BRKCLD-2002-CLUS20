@@ -22,6 +22,9 @@ RUN /var/www/venv/bin/python3 scripts/init_django.py
 COPY docker/clus20_django.conf /etc/apache2/sites-available/100-clus20_django.conf
 RUN a2ensite 100-clus20_django && a2dissite 000-default
 
+# Copy database connection information
+COPY docker/pgsql-connection.json connection.json
+
 # Copy the initialization script
 COPY docker/init_database.py scripts/
 

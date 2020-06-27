@@ -1,0 +1,9 @@
+{
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "clus20_database",
+        "HOST": "clus20_pgsql",
+        "USER": "postgres",
+        "PASSWORD": "postgres"
+    }
+}
