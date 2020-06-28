@@ -42,8 +42,14 @@ With all the components in place, we can launch our demo application:
 
 ```bash
 docker run -d --name clus20_django -p 8080:80 --network demo0 \
+    -v ${REPO_BASE_DIR}/clus20_django:/var/www/clus20_django \
     clus20_django:latest
 ```
+
+The volume mapping of the code permits development of the code without
+having to constantly rebuild to container. When code development is
+complete, the Dockerfile has the copy command and the "release" version
+of the code embedded in the image.
 
 Last step - initialize/prime the database table structures:
 
