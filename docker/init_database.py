@@ -1,6 +1,7 @@
 #!/var/www/venv/bin/python3
 
 # Initialize Python environment to leverage Django content
+import os
 import sys
 sys.path.append('/var/www/clus20_django')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clus20_django.settings')
