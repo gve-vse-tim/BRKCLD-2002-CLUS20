@@ -44,3 +44,10 @@ With all the components in place, we can launch our demo application:
 docker run -d --name clus20_django -p 8080:80 --network demo0 \
     clus20_django:latest
 ```
+
+Last step - initialize/prime the database table structures:
+
+```bash
+docker exec -it clus20_django \
+    bash -c "source /var/www/venv/bin/activate && python3 /var/www/scripts/init_database.py"
+```
