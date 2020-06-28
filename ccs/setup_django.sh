@@ -1,14 +1,23 @@
 #!/bin/bash
 #
 # Assumptions:
-#  - App Package directory is /opt/remoteFiles/appPackage/BRKCLD-2002-CLUS20-4.0
+#  - App Package directory is /opt/remoteFiles/appPackage/BRKCLD-2002-CLUS20-x.y
 #    - GitHub repository name (github.com/gve-vse-tim/BRKCLD-2002-CLUS20)
+#    - x.y defined by the repo tag
 #  - This script is run as cliquser
 #  - This script is executed AFTER the database (clus20_database) is created
+#    by the MySQL database service initialization.  (create and assign privs)
+#  - This script will create all the tables and seed data in that database
+
+if [ x"$1" == "x" ]; then
+    REPO_VERS="$1"
+else
+    REPO_VERS="4.0"
+fi
 
 CCSWM_AGENT=/usr/local/agentlite
 CCSWM_PARENT=/opt/remoteFiles/appPackage
-PARENT_SRC=${CCSWM_PARENT}/BRKCLD-2002-CLUS20-4.0
+PARENT_SRC=${CCSWM_PARENT}/BRKCLD-2002-CLUS20-${REPO_VERS}
 WEB_ROOT=/var/www
 HTTPD_CONFD=/etc/apache2/sites-available
 
