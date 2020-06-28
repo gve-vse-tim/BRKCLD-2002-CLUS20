@@ -45,6 +45,9 @@ sudo /bin/cp -r ${PARENT_SRC}/clus20_django ${WEB_ROOT}
 # Copy connection info to proper destination
 sudo /bin/cp ${PARENT_SRC}/docker/mysql-connection.json ${WEB_ROOT}/connection.json
 
+# Populate the Django DB
+sudo su -c "source ${WEB_ROOT}/venv/bin/activate && python3 ${PARENT_SRC}/docker/init_database.py"
+
 # Copy Django3 Apache configuration file
 if ! /usr/bin/test -d ${HTTPD_CONFD}; then
     /bin/echo "Apache configuration directory missing"
