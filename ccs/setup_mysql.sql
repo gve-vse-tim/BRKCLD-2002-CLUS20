@@ -4,7 +4,7 @@
 CREATE DATABASE clus20_database CHARACTER SET utf8;
 
 -- Create user
-CREATE USER mysql IDENTIFIED BY 'mysql';
+CREATE USER 'mysql'@'%' IDENTIFIED BY 'mysql';
 
 -- Grant ADMIN privileges to user
-GRANT ALL PRIVILEGES ON mysql.* to 'mysql'@'%';
+GRANT ALL PRIVILEGES ON clus20_database.* TO 'mysql'@'%';
