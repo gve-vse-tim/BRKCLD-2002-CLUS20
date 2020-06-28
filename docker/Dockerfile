@@ -6,7 +6,8 @@ WORKDIR /var/www
 # Install packages
 RUN apt-get update -y \
     && apt-get install -y git iproute2 python3-pip virtualenv \
-    && apt-get install -y apache2 libapache2-mod-wsgi-py3 python3-psycopg2 \
+    && apt-get install -y apache2 libapache2-mod-wsgi-py3 python-dev \
+    && apt-get install -y default-libmysqlclient-dev mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install required Python modules
@@ -23,7 +24,7 @@ COPY docker/clus20_django.conf /etc/apache2/sites-available/100-clus20_django.co
 RUN a2ensite 100-clus20_django && a2dissite 000-default
 
 # Copy database connection information
-COPY docker/pgsql-connection.json connection.json
+COPY docker/mysql-connection.json connection.json
 
 # Copy the initialization script
 COPY docker/init_database.py scripts/

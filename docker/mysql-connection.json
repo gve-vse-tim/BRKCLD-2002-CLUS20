@@ -1,0 +1,9 @@
+{
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "clus20_database",
+        "HOST": "clus20_mysql",
+        "USER": "mysql",
+        "PASSWORD": "mysql"
+    }
+}

@@ -27,6 +27,17 @@ docker run -d --name clus20_pgsql -p 5432:5432 --network demo0 \
     postgres
 ```
 
+Alternatively, you could leverage MySQL database as an alternative:
+
+```bash
+mkdir -p ${REPO_BASE_DIR}/mysql
+docker run -d --name clus20_mysql -p 3306:3306 --network demo0 \
+    -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql \
+    -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=clus20_database \
+    -v ${REPO_BASE_DIR}/mysql:/var/lib/mysql \
+    mysql
+```
+
 With all the components in place, we can launch our demo application:
 
 ```bash
