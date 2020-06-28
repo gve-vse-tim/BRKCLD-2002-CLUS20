@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 # Assumptions:
-#  - App Package directory is /opt/remoteFiles/appPackage/BRKCLD-2002-CLUS20
+#  - App Package directory is /opt/remoteFiles/appPackage/BRKCLD-2002-CLUS20-4.0
 #    - GitHub repository name (github.com/gve-vse-tim/BRKCLD-2002-CLUS20)
 #  - This script is run with root privileges
 #  - This script is executed AFTER the database (clus20_database) is created
 
 CCSWM_AGENT=/usr/local/agentlite
 CCSWM_PARENT=/opt/remoteFiles/appPackage
-PARENT_SRC=${CCSWM_PARENT}/BRKCLD-2002-CLUS20-3.0
+PARENT_SRC=${CCSWM_PARENT}/BRKCLD-2002-CLUS20-4.0
 WEB_ROOT=/var/www
 HTTPD_CONFD=/etc/apache2/sites-available
 
