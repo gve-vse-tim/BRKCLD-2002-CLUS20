@@ -32,7 +32,7 @@ provided by the operating system package manager and including in the virtual
 environment via **--system-site-packages** option to **virtualenv**
 
 - Python >= 3.6
-- Psycopg2 >= 2.7
+- mysqlclient >= 1.3.13
 - Django >= 3.0
 - Apache 2.4
 - mod_wsgi with Python 3 support
@@ -51,4 +51,3 @@ A secret_key.txt must be provided to the application and store in the location
   - python manage.py migrate
   - python manage.py createsuperuser
   - Adds some poll questions
-
