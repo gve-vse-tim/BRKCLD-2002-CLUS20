@@ -15,14 +15,15 @@ else
     REPO_VERS="4.0"
 fi
 
+# Import CloudCenter deployment variables
 CCSWM_AGENT=/usr/local/agentlite
+source ${CCSWM_AGENT}/etc/userenv
+
 CCSWM_PARENT=/opt/remoteFiles/appPackage
 PARENT_SRC=${CCSWM_PARENT}/BRKCLD-2002-CLUS20-${REPO_VERS}
+
 WEB_ROOT=/var/www
 HTTPD_CONFD=/etc/apache2/sites-available
-
-# Import CloudCenter deployment variables
-source ${CCSWM_AGENT}/etc/userenv
 
 # Create Database Host Entry
 DB_HOST=${CliqrDependencies}
@@ -68,4 +69,3 @@ sudo /bin/cp ${PARENT_SRC}/docker/clus20_django.conf /etc/apache2/sites-availabl
 sudo /usr/sbin/a2dissite 000-default
 sudo /usr/sbin/a2ensite clus20_django
 sudo /bin/systemctl reload apache2
-
