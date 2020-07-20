@@ -1,0 +1,5 @@
+echo "docker exec -it clus20_django \\ "
+echo '    bash -c "source /var/www/venv/bin/activate && python3 /var/www/scripts/init_database.py"'
+
+docker exec -it clus20_django \
+    bash -c "source /var/www/venv/bin/activate && python3 /var/www/scripts/init_database.py"
